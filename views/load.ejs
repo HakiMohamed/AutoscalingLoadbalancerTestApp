@@ -1,0 +1,64 @@
+// views/load.ejs
+<%- include('layouts/header') %>
+
+<main class="container mx-auto px-4 py-8">
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Test de Charge</h1>
+        
+        <div class="max-w-md mx-auto">
+            <form id="loadTestForm" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                        Durée (ms)
+                    </label>
+                    <input type="number" name="duration" value="5000" min="1000" max="10000"
+                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                
+                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Lancer le test
+                </button>
+            </form>
+
+            <div id="result" class="mt-6 hidden">
+                <h2 class="text-xl font-bold mb-2">Résultats</h2>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <p id="resultMessage"></p>
+                    <p id="resultDuration"></p>
+                    <p id="resultTimestamp"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+document.getElementById('loadTestForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const duration = e.target.duration.value;
+    const resultDiv = document.getElementById('result');
+    
+    try {
+        const response = await fetch('/execute-load', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ duration }),
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            resultDiv.classList.remove('hidden');
+            document.getElementById('resultMessage').textContent = data.message;
+            document.getElementById('resultDuration').textContent = `Durée: ${data.duration}`;
+            document.getElementById('resultTimestamp').textContent = `Timestamp: ${data.timestamp}`;
+        }
+    } catch (error) {
+        alert('Erreur lors du test: ' + error.message);
+    }
+});
+</script>
+
+<%- include('layouts/footer') %> 

@@ -1,0 +1,16 @@
+// views/error.ejs
+<%- include('layouts/header') %>
+
+<main class="container mx-auto px-4 py-8">
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h1 class="text-3xl font-bold text-red-600 mb-4">Erreur</h1>
+        <div class="bg-red-50 border border-red-200 p-4 rounded-lg">
+            <p class="text-red-700"><%= error.message %></p>
+        </div>
+        <div class="mt-4">
+            <a href="/" class="text-blue-500 hover:text-blue-700">Retour à l'accueil</a>
+        </div>
+    </div>
+</main>
+
+<%- include('layouts/footer') %> 

@@ -1,0 +1,45 @@
+// views/system.ejs
+<%- include('layouts/header') %>
+
+<main class="container mx-auto px-4 py-8">
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Informations Système</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold mb-4">Système</h2>
+                <ul class="space-y-2">
+                    <li><strong>Hostname:</strong> <%= hostname %></li>
+                    <li><strong>Platform:</strong> <%= platform %></li>
+                    <li><strong>Uptime:</strong> <%= uptime %></li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold mb-4">CPU</h2>
+                <ul class="space-y-2">
+                    <li><strong>Nombre de CPUs:</strong> <%= cpus.count %></li>
+                    <li><strong>Modèle:</strong> <%= cpus.model %></li>
+                    <li><strong>Vitesse:</strong> <%= cpus.speed %></li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold mb-4">Mémoire</h2>
+                <ul class="space-y-2">
+                    <li><strong>Total:</strong> <%= memory.total %></li>
+                    <li><strong>Libre:</strong> <%= memory.free %></li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold mb-4">Réseau</h2>
+                <div class="overflow-auto max-h-48">
+                    <pre class="text-sm"><%= JSON.stringify(network, null, 2) %></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include('layouts/footer') %> 

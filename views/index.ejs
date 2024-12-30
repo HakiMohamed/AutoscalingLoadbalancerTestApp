@@ -1,0 +1,37 @@
+// views/index.ejs
+<%- include('layouts/header') %>
+
+<main class="container mx-auto px-4 py-8">
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6"><%= message %></h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-blue-100 p-4 rounded-lg">
+                <h2 class="text-lg font-semibold">Instance</h2>
+                <p class="text-gray-700"><%= instance %></p>
+            </div>
+            <div class="bg-green-100 p-4 rounded-lg">
+                <h2 class="text-lg font-semibold">Timestamp</h2>
+                <p class="text-gray-700"><%= timestamp %></p>
+            </div>
+            <!-- Ajoutez d'autres métriques ici -->
+        </div>
+
+        <div class="mt-8">
+            <h2 class="text-2xl font-bold mb-4">Actions Rapides</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a href="/health-check" class="bg-blue-500 text-white p-4 rounded-lg text-center hover:bg-blue-600">
+                    Vérifier l'état du système
+                </a>
+                <a href="/load-test" class="bg-yellow-500 text-white p-4 rounded-lg text-center hover:bg-yellow-600">
+                    Lancer un test de charge
+                </a>
+                <a href="/system-info" class="bg-green-500 text-white p-4 rounded-lg text-center hover:bg-green-600">
+                    Voir les infos système
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include('layouts/footer') %> 
