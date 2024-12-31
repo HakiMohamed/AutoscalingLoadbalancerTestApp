@@ -1,7 +1,6 @@
-// views/system.ejs
 <%- include('layouts/header') %>
 
-<main class="container mx-auto px-4 py-8">
+<main class="container mx-auto px-4 py-8">  
     <div class="bg-white rounded-lg shadow-md p-6">
         <h1 class="text-3xl font-bold text-gray-800 mb-6">Informations Système</h1>
         
@@ -11,6 +10,8 @@
                 <ul class="space-y-2">
                     <li><strong>Hostname:</strong> <%= hostname %></li>
                     <li><strong>Platform:</strong> <%= platform %></li>
+                    <p>Instance ID: <%= instanceId %></p>
+                    <p>Availability Zone: <%= availabilityZone %></p>
                     <li><strong>Uptime:</strong> <%= uptime %></li>
                 </ul>
             </div>
