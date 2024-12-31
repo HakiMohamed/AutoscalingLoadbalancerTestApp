@@ -41,7 +41,7 @@ async function getEC2Metadata() {
         ]);
         return { instanceId, availabilityZone };
     } catch (error) {
-        return { instanceId: 'N/A', availabilityZone: 'N/A' };
+        return { instanceId: 'Non-EC2 Environment', availabilityZone: 'Non-EC2 Environment' };
     }
 }
 
