@@ -63,7 +63,7 @@ app.get('/', async (req, res) => {
     }
 });
 
-app.get('/health-check', async (req, res) => {
+app.get('/health', async (req, res) => {
     try {
         const healthData = {
             title: 'État du Système',
@@ -79,6 +79,14 @@ app.get('/health-check', async (req, res) => {
     } catch (error) {
         res.render('error', { error });
     }
+});
+
+
+app.get('/health-check', (req, res) => {
+    res.status(200).json({
+        status: 'healthy',
+        timestamp: new Date().toISOString()
+    });
 });
 
 app.get('/load-test', async (req, res) => {
