@@ -15,6 +15,19 @@
             </div>
 
             <div class="bg-gray-50 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold mb-4">Utilisation CPU</h2>
+                <div class="relative pt-1">
+                    <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                        <div style="width:<%= cpu.usage %>" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Utilisation: <%= cpu.usage %></span>
+                        <span>Cœurs: <%= cpu.cores %></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
                 <h2 class="text-xl font-semibold mb-4">Utilisation Mémoire</h2>
                 <div class="relative pt-1">
                     <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">

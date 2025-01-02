@@ -65,6 +65,17 @@ app.get('/', async (req, res) => {
 
 app.get('/health', async (req, res) => {
     try {
+        // Fonction pour calculer l'utilisation CPU
+        const getCpuUsage = () => {
+            const cpus = os.cpus();
+            const cpuUsage = cpus.map(cpu => {
+                const total = Object.values(cpu.times).reduce((acc, tv) => acc + tv, 0);
+                const idle = cpu.times.idle;
+                return ((total - idle) / total) * 100;
+            });
+            return (cpuUsage.reduce((acc, usage) => acc + usage, 0) / cpus.length).toFixed(2);
+        };
+
         const healthData = {
             title: 'État du Système',
             status: 'healthy',
@@ -73,6 +84,10 @@ app.get('/health', async (req, res) => {
                 total: os.totalmem(),
                 free: os.freemem(),
                 usage: `${((1 - os.freemem() / os.totalmem()) * 100).toFixed(2)}%`
+            },
+            cpu: {
+                usage: `${getCpuUsage()}%`,
+                cores: os.cpus().length
             }
         };
         res.render('health', healthData);
