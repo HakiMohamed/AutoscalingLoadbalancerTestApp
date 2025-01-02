@@ -51,7 +51,7 @@ app.get('/', async (req, res) => {
         const { instanceId, availabilityZone } = await getEC2Metadata();
         const data = {
             title: 'Dashboard AWS',
-            message: 'Bienvenue au Workshop AWS Scaling!',
+            message: 'Bienvenue au AWS Scaling!',
             instance: os.hostname(),
             instanceId: instanceId,
             availabilityZone: availabilityZone,
@@ -159,6 +159,6 @@ app.get('/system-info', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`🚀 Serveur démarré sur http://localhost:${port}`);
+app.listen(3000, '0.0.0.0', () => {
+    console.log('Server running on port 3000');
 });
